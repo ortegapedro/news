@@ -764,7 +764,7 @@ def getNews(Fecha,links):
                         bd = MySQLdb.connect("127.0.0.1", "root", "1234", "visualizadordenoticias", use_unicode=True,charset="utf8")
 
                         cursor = bd.cursor()
-                        sql = "INSERT INTO newsCrawlerLema(idnew_table,Fuente,Fecha,Titulo,TituloMD5,Link,Descripcion,Categoria,Texto,TextoLematizado,WordCountTexto,RaizSumatoriaCuadrados,Entities,EntitiesRecognized,numeroDePalabras,Images,Location) VALUES "
+                        sql = "INSERT INTO news(idnew_table,Fuente,Fecha,Titulo,TituloMD5,Link,Descripcion,Categoria,Texto,TextoLematizado,WordCountTexto,RaizSumatoriaCuadrados,Entities,EntitiesRecognized,numeroDePalabras,Images,Location) VALUES "
                         sql += "(NULL,'" + str(Fuente1) + "','" + str(Fecha1) + "'," + "'" + titulo.decode('utf-8') + "','" + TituloMD5 + "','" + str(liga) + "','" + descripcion.decode('utf-8') + "','" + categoria + "','" + texto.decode('utf-8') + "','" + TextoLematizadoString + "','" + wordsCountedlematized + "','" + raiz + "','" + entitiesCounted + "','" + EntitiesRecognized+ "','"+str(numeroDePalabras)+ "','" + linkImages+ "','" + locations + "')"
                         cursor.execute(sql)
                         bd.commit()
@@ -772,7 +772,7 @@ def getNews(Fecha,links):
 
                     except BaseException, e:
                         try:
-                            sql = "INSERT INTO newsCrawlerLema(idnew_table,Fuente,Fecha,Titulo,TituloMD5,Link,Descripcion,Categoria,Texto,TextoLematizado,WordCountTexto,RaizSumatoriaCuadrados,Entities,EntitiesRecognized,numeroDePalabras,Images,Location) VALUES "
+                            sql = "INSERT INTO news(idnew_table,Fuente,Fecha,Titulo,TituloMD5,Link,Descripcion,Categoria,Texto,TextoLematizado,WordCountTexto,RaizSumatoriaCuadrados,Entities,EntitiesRecognized,numeroDePalabras,Images,Location) VALUES "
                             sql += "(NULL,'" + Fuente1 + "','" + str(Fecha1) + "'," + "'" + titulo + "','" + TituloMD5 +"','" + liga + "','" + descripcion+ "','" + categoria + "','" + texto + "','" + TextoLematizadoString + "','" + wordsCountedlematized + "','" + raiz + "','" + entitiesCounted + "','" + EntitiesRecognized+ "','" + str(numeroDePalabras) + "','" + linkImages + "','" + locations + "')"
                             cursor.execute(sql)
                             bd.commit()
