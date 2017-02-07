@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News</title>
+
+  <!--link rel="stylesheet" href="https://openlayers.org/en/v3.19.1/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+  <link rel="stylesheet" href="./static/lib/css/ol.css" type="text/css">
+ <link rel="stylesheet" href="./static/lib/css/bootstrap.min.css">
+  <!--link rel="stylesheet" href="./static/lib/css/keen-dashboards.css"-->
+  <link rel="stylesheet" href="./static/lib/css/dc.css">
+  <link rel="stylesheet" href="./static/css/custom.css">
+  <link rel="stylesheet" href="./static/css/styleMap.css">
+  <!--Para el calendario-->
+    <link rel="stylesheet" type="text/css" href="./static/lib/css/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="./static/lib/css/dhtmlxcalendar.css"/>
+	<script src="./static/lib/js/dhtmlxcalendar.js"></script>
+
+    <link rel="stylesheet" href="./static/lib/css/jqcloud.min.css">
+    <!--libs para el grafo-->
+
+    <script src="./static/js/d3.js"></script>
+    <link rel="stylesheet" href="./static/css/jquery-ui.css">
+    <script src="./static/lib/js/jquery-1.10.2.js"></script>
+    <script src="./static/lib/js/jquery-ui.js"></script>
+
+    <!--script src="http://d3js.org/d3.v3.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"-->
+    <!--script src="http://code.jquery.com/jquery-1.10.2.js"></script-->
+    <!--script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script-->
+
+    <!-- -->
+
+    <script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <style>
+
+
+      .popover-content{
+       position: absolute;
+        background-color: white;
+        -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 12px;
+        left: -50px;
+        min-width: 280px;
+
+      }
+
+    </style>
+
+
+
+
+</head>
+<body onload="doOnLoad();">
+
+
+
+  <!--div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">Noticias</a>
+      </div>
+    </div>
+  </div-->
+  <br>
+    <div>
+        <span>   De: </span> <input type="text" id="date_from" onclick="setSens('date_to', 'max');" readonly="true">
+        <span>   Hasta: </span> <input type="text" id="date_to" onclick="setSens('date_from', 'min');" readonly="true">
+    </div>
+  <div class="container-fluid">
+
+
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="topNav">
+      <!-- ---------------------Para poner un icono a la aplicacion
+      <span id="about-section" class="mobile-hide about">
+        <a href="http://www.cs.umd.edu/~hjs/newsstand-first-page.html" id="about-icon" class="about-icon" aria-describedby="tipsy" tabindex="0">
+          <img src="images/help-browser.png" width="25">
+        </a>
+      </span>
+      -->
+      <!------------------------Para poner ligas en la parte superio
+      <div id="otherSystemsLinks"><a href="#tour">Tour</a> | Try <a href="http://twitterstand.umiacs.umd.edu">TwitterStand</a> | <a href="http://photostand.umiacs.umd.edu">PhotoStand</a></div>
+      -->
+      <div id="" class="">
+
+        <ul id="topic-list" class="list-inline">
+          <!--li id="logo" class="mobile-hide li-full">
+            <a href="http://www.umd.edu">
+              <img id="main_logo" src="\images\Business.png" style="height:auto;">
+            </a>
+          </li>
+          <li id="all-li">
+            <input type="radio" id="Topic_All" class="all filter_select" checked="checked">
+            <label for="Topic_All" class="menu-button">All</label>
+         </li-->
+          <li id="CienciaYTecnologia-li">
+            <input type="radio" id="CienciaYTecnologia" name="category" class=""  value="CienciaYTecnologia">
+            <label for="CienciaYTecnologia" class="menu-button topic-label">
+              <span> Cien. Y Tec. </span>
+            </label>
+          </li>
+          <li id="Cultura-li">
+            <input type="radio" id="Cultura"  name="category" class="" value="Cultura">
+            <label for="Cultura" class="menu-button topic-label">
+              <span> Cultura </span>
+            </label>
+          </li>
+           <li id="Deportes-li">
+            <input type="radio" id="Deportes" name="category" class="" value="Deportes">
+            <label for="Deportes" class="menu-button topic-label">
+              <span> Deportes </span>
+            </label>
+          </li>
+            <li id="Entretenimiento-li">
+            <input type="radio" id="Entretenimiento" name="category" class="" value="Entretenimiento">
+            <label for="Entretenimiento" class="menu-button topic-label">
+              <span> Entretenimiento </span>
+            </label>
+          </li>
+           <li id="Finanzas-li">
+            <input type="radio" id="Finanzas"  name="category" class="" value="Finanzas">
+            <label for="Finanzas" class="menu-button topic-label">
+              <span> Finanzas </span>
+            </label>
+          </li>
+          <li id="Opinion-li">
+            <input type="radio" id="Opinion"  name="category" class="" value="Opinion">
+            <label for="Opinion-li" class="menu-button topic-label">
+              <span> Opinion </span>
+            </label>
+          </li>
+          <li id="Politica-li">
+            <input type="radio" id="Politica"  name="category" class="" value="Politica">
+            <label for="Politica" class="menu-button topic-label">
+              <span> Politica </span>
+            </label>
+          </li>
+           <li id="Salud-li">
+            <input type="radio" id="Salud"  name="category" class="" value="Salud">
+            <label for="Salud" class="menu-button topic-label">
+              <span> Salud </span>
+            </label>
+          </li>
+          <li id="Seguridad-li">
+            <input type="radio" id="Seguridad" name="category" class="" value="Seguridad">
+            <label for="Seguridad" class="menu-button topic-label">
+              <span> Seguridad </span>
+            </label>
+          </li>
+          <li id="Sociedad-li">
+            <input type="radio" id="Sociedad" name="category" class="" value="Sociedad">
+            <label for="Sociedad" class="menu-button topic-label">
+              <span> Sociedad </span>
+            </label>
+          </li>
+            <li id="Todo-li">
+            <input type="radio" id="Todo" name="category" class="" value="Todo">
+            <label for="Sociedad" class="menu-button topic-label">
+              <span> Todo </span>
+            </label>
+          </li>
+
+            <li id="botonSearch">
+                <input type="text" id="txtJob" placeholder="Busca una noticia..." >
+                <button type="button" class="btn btn-primary" onclick="getQuery()">Buscar</button>
+
+
+            </li>
+
+        </ul>
+
+      </div>
+
+            <br>
+
+      </div>
+
+      </div>
+
+
+    </div>
+       <!-- Imangen , titulo resumen -->
+      <div class="row">
+        <div class="col-sm-3">
+            <ul id="topic" class="list-inline">
+
+                      <li id="nTopicos-li">
+                        <div id ="nTopicos"></div>
+                      </li>
+                      <li id="nNoticias-li">
+                        <div id ="nNoticias"></div>
+                      </li>
+                <br>
+            </ul>
+
+             <div class="card-deck-wrapper" style="width:100%;height:850px;overflow:auto;">
+
+
+                    <!--div id ="nTopicos"></div-->
+                 <div class="card-deck">
+                    <!--div id ="cardT"></div-->
+                     <div id="cardT1"></div>
+                 </div>
+
+
+             </div>
+         </div>
+          <!--Fin  Imangen , titulo resumen -->
+
+
+        <div class="col-sm-9" >
+           <div id="map" class="map">
+               <div id="popup"></div>
+           </div>
+        </div>
+      </div>
+
+
+     <div class="row">
+
+
+
+          <div class="col-sm-6" class="table-responsive">
+
+            <div class="ui-widget" >
+                <br>
+                <label for="search">Search: </label>
+                     <input id="search"> </div>
+
+            <!--div id="chart" onclick="getQuery()"-->
+
+                    <div id="chart">
+
+            </div>
+          </div>
+
+         <div class="col-sm-6">
+
+             <div id="cloud" style="width: 100%; height: 550px; position: relative;"></div>
+              <!--div>
+                  <input type="range" id="slider" value="0.5" min="0.0" max="1.0" step="0.01" />
+
+                    <br />
+
+                   <span id="slider_value">Nothing yet.</span>
+              </div-->
+          </div>
+      </div>
+
+
+      <div class="row">
+
+      <div class="col-sm-12" class="table-responsive">
+
+        <div id="info" >&nbsp;</div>
+
+         <div id="mostrar"  style="width:100%;height:550px;overflow:auto;"></div>
+         <br>
+         <div id="mytable"  style="width:100%;height:550px;overflow:auto;"></div>
+      </div>
+
+           <!--div class="row">
+        <div class="col-sm-12">
+            <div id="map" class="map"></div>
+        </div>
+      </div-->
+
+      </div>
+
+
+     </div>
+
+
+    <hr>
+    <p class="small text-muted">Built with &#9829; by <a href="https://www.facebook.com/profile.php?id=100003285426502">Pedro Ricardo Ortega Castellanos</a></p>
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="./static/lib/js/ol.js"></script>
+
+
+  <script src="./static/js/map.js"></script>
+
+
+  <script src="./static/lib/js/jqcloud.js"></script>
+
+      <!--libs para el grafo-->
+   <script src="./static/js/g2j4d3.js"></script>
+   <script src="./static/js/graphSub.js"></script>
+
+ <script src="https://rawgit.com/abdennour/bootstrap-waitingfor/master/build/bootstrap-waitingfor.js"></script>
+
+
+</body>
+
+
+</html>
