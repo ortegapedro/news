@@ -1,4 +1,4 @@
-# 1. set up project 
+# 1. install project 
 1. Open database file and execute sql statements in order to create the data base.
 2. import file data.sql into data base. 
 3. Install python 2.4
