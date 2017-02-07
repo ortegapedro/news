@@ -1,0 +1,22 @@
+Data base struture:
+
+CREATE DATABASE visualizadordenoticias;
+CREATE TABLE `visualizadordenoticias`.`news` (
+  `idnew_table` INT NOT NULL AUTO_INCREMENT,
+  `Fuente` VARCHAR(255) NULL,
+  `Fecha` DATE NULL,
+  `Titulo` VARCHAR(255) NULL,
+  `TituloMD5` VARCHAR(255) NULL,
+  `Link` TINYTEXT NULL,
+  `Description` TEXT NULL,
+  `Categoria` VARCHAR(30) NULL,
+  `Texto` LONGTEXT NULL,
+  `TextoLematizado` LONGTEXT NULL,
+  `WordCountTexto` TEXT NULL,
+  `RaizSumatoriaCuadrados` TEXT NULL,
+  `Entities` TEXT NULL,
+  `EntitiesRecognized` TEXT NULL,
+  `numeroDePalabras` INT NULL,
+  `Images` TEXT NULL,
+  `Location` TEXT NULL,
+  PRIMARY KEY (`idnew_table`));
